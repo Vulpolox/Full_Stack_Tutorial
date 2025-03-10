@@ -1,12 +1,20 @@
-import { MouseEvent } from "react";
-
 // surround jsx code with <> </> to automatically use a fragment to encapsulate multiple elements
 // in this case the header1 and the unordered list
-function ListGroup() {
-  let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
 
-  // this is called an event handler
-  const handleClick = (event: MouseEvent) => console.log(event);
+import { useState } from "react";
+
+// properties interface; allows for dynamic list names and items
+interface Props {
+  items: string[];
+  heading: string;
+
+  // (item: string) -> void
+  onSelectItem: (item: string) => void;
+}
+
+function ListGroup({ items, heading, onSelectItem }: Props) {
+  // this is a state hook ; selectedIndex is state var, setSelectedIndex is updater func ; -1 is init value of state var
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   // retruns a unique message if there aren't any items in the list
   const getMessage = () => {
@@ -15,11 +23,22 @@ function ListGroup() {
 
   return (
     <>
-      <h1>LIST</h1>
+      <h1>{heading}</h1>
       {getMessage()}
       <ul className="list-group">
         {items.map((item, index) => (
-          <li className="list-group-item" onClick={handleClick} key={item}>
+          <li
+            className={
+              index === selectedIndex
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item);
+            }}
+            key={item}
+          >
             {item}
           </li>
         ))}
