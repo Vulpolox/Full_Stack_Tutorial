@@ -2,6 +2,7 @@
 // in this case the header1 and the unordered list
 
 import { useState } from "react";
+import "./ListGroup.css";
 
 // properties interface; allows for dynamic list names and items
 interface Props {

@@ -18,6 +18,12 @@ function App() {
       <Button color="primary" onClick={() => setAlertVisibility(true)}>
         Click Me Or Else
       </Button>
+
+      <ListGroup
+        items={["hello", "world", "this", "is", "list"]}
+        heading="Some List"
+        onSelectItem={() => {}}
+      ></ListGroup>
     </div>
   );
 }
