@@ -2,7 +2,16 @@
 // in this case the header1 and the unordered list
 
 import { useState } from "react";
-import "./ListGroup.css";
+
+// to use styles, rename your css file to have a .module before the extension
+// this allows you to treat the file as an object and its classes as its attributes
+// to style using the .list-group class from ListGroup.module.css, use className={styles['list-group']}
+// or if the class was named using camelCase, use dot notation: className={styles.cssClass}
+// note that this is mutually exclusive to bootstrap
+
+// if using multiple css classes, do className={[styles.classOne, styles.classTwo].join(' ')} -> this
+// will translate into className="classOne classTwo"
+import styles from "./ListGroup.module.css";
 
 // properties interface; allows for dynamic list names and items
 interface Props {

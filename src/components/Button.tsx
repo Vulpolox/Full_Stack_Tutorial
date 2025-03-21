@@ -4,11 +4,16 @@ interface Props {
   children: ReactNode;
   color?: "primary" | "secondary" | "danger";
   onClick: () => void;
+  className?: string;
 }
 
-function Button({ children, onClick, color = "primary" }: Props) {
+function Button({ children, onClick, className, color = "primary" }: Props) {
   return (
-    <button type="button" className={"btn btn-" + color} onClick={onClick}>
+    <button
+      type="button"
+      className={"btn btn-" + color + " " + className}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
