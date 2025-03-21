@@ -14,12 +14,13 @@ function App() {
 
   return (
     <div>
-      <BsFillCalendarFill className="me-3 ms-1" />
       {alertVisible && (
         <DismissibleAlert onClose={() => setAlertVisibility(false)}>
           <strong>Your Computer Have Virus!</strong>
         </DismissibleAlert>
       )}
+
+      <BsFillCalendarFill className="me-3 ms-1" color="blue" size="40" />
 
       <Button
         className="mt-3"
