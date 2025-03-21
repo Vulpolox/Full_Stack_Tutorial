@@ -6,6 +6,7 @@ import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import DismissibleAlert from "./components/DismissibleAlert";
 import Button from "./components/Button";
+import { Like, BetterLike } from "./components/Like";
 
 import { useState } from "react";
 
@@ -20,10 +21,18 @@ function App() {
         </DismissibleAlert>
       )}
 
-      <BsFillCalendarFill className="me-3 ms-1" color="blue" size="40" />
+      <BsFillCalendarFill className="fs-5 me-3 ms-1" color="blue" size="40" />
+
+      <Like className="me-3 ms-3" selectedColor="red" />
+
+      <BetterLike
+        onClick={() => {
+          console.log("Like Clicked!");
+        }}
+      />
 
       <Button
-        className="mt-3"
+        className="mt-3 ms-3"
         color="primary"
         onClick={() => setAlertVisibility(true)}
       >
