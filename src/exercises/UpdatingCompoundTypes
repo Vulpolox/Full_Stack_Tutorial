@@ -1,0 +1,43 @@
+import { useState } from "react";
+import { produce } from "immer";
+
+// Section #2 Exam Exercise 3
+  const [cart, setCart] = useState({
+    discount: 0.1,
+    items: [
+      { id: 1, title: "p1", quantity: 1 },
+      { id: 2, title: "p2", quantity: 1 },
+    ],
+  });
+
+  // modify the value of the second item's quantity by adding 1 to it
+  // many projects use this form for update logic, but it can also be accomplished using immer
+  const hypotheticalHandleClick = () => {
+    setCart({
+      ...cart,
+      items: cart.items.map((item) => {
+        return item.id === 2
+          ? { ...item, quantity: item.quantity + 1 }
+          : { ...item };
+      }),
+    });
+  };
+
+  // use immer for the same thing
+  // -------------------------------
+  // * immer produce() function signature: useStateMutator( produce( func(draft) {...} ) )
+  // * draft is a mutable copy of the original compound type that is used to construct
+  //   and pass the equivalent required immutable compound type to update the state
+  // * to easily iterate through sub-compound types in the
+  //   draft, use draft.<sub-compound-type>.forEach( func(<sub-compound-type-element>) {...} )
+  const hypotheticalHandleClickImmer = () => {
+    setCart(
+        produce(draft => {
+            draft.items.forEach(item => {
+                if (item.id === 2) {
+                    item.quantity += 1;
+                }
+            })
+        })
+    )
+  }

@@ -3,49 +3,95 @@
 import { BsFillCalendarFill } from "react-icons/bs";
 
 import ListGroup from "./components/ListGroup";
-import Alert from "./components/Alert";
-import DismissibleAlert from "./components/DismissibleAlert";
+import { Alert, DismissibleAlert } from "./components/Alert";
 import Button from "./components/Button";
 import { Like, BetterLike } from "./components/Like";
+import { Cart, NavBar } from "./components/SharedStateEx";
+
+import { produce } from "immer";
 
 import { useState } from "react";
 
+var section = "2";
+
 function App() {
+  // Section #1 Variables
   const [alertVisible, setAlertVisibility] = useState(false);
 
-  return (
-    <div>
-      {alertVisible && (
-        <DismissibleAlert onClose={() => setAlertVisibility(false)}>
-          <strong>Your Computer Have Virus!</strong>
-        </DismissibleAlert>
-      )}
+  // Section #2 Variables
+  const [cartItems, setCartItems] = useState(["Product1", "Product2"]);
 
-      <BsFillCalendarFill className="fs-5 me-3 ms-1" color="blue" size="40" />
+  // Section #2 Exam || Variables / Functions
 
-      <Like className="me-3 ms-3" selectedColor="red" />
+  // Section #2 Exam Exercise 2
+  const [game, setGame] = useState({
+    id: 1,
+    player: {
+      name: "John",
+    },
+  });
 
-      <BetterLike
-        onClick={() => {
-          console.log("Like Clicked!");
-        }}
-      />
+  const changePlayer = () => {
+    setGame({ ...game, player: { ...game.player, name: "Bob" } });
+  };
 
-      <Button
-        className="mt-3 ms-3"
-        color="primary"
-        onClick={() => setAlertVisibility(true)}
-      >
-        Click Me Or Else
-      </Button>
+  // Section #1 Page
+  if (section === "1")
+    return (
+      <div>
+        {alertVisible && (
+          <DismissibleAlert onClose={() => setAlertVisibility(false)}>
+            <strong>Your Computer Have Virus!</strong>
+          </DismissibleAlert>
+        )}
 
-      <ListGroup
-        items={["hello", "world", "this", "is", "list"]}
-        heading="Some List"
-        onSelectItem={() => {}}
-      ></ListGroup>
-    </div>
-  );
+        <BsFillCalendarFill className="fs-5 me-3 ms-1" color="blue" size="40" />
+
+        <Like className="me-3 ms-3" selectedColor="red" />
+
+        <BetterLike
+          onClick={() => {
+            console.log("Like Clicked!");
+          }}
+        />
+
+        <Button
+          className="mt-3 ms-3"
+          color="primary"
+          onClick={() => setAlertVisibility(true)}
+        >
+          Click Me Or Else
+        </Button>
+
+        <ListGroup
+          items={["hello", "world", "this", "is", "list"]}
+          heading="Some List"
+          onSelectItem={() => {}}
+        ></ListGroup>
+      </div>
+    );
+  // Section #2 Page
+  else if (section === "2")
+    return (
+      <>
+        <div>
+          <NavBar cartItemsCount={cartItems.length}></NavBar>
+          <Cart
+            cartItems={cartItems}
+            onClear={() => {
+              setCartItems([]);
+            }}
+          />
+        </div>
+        <div>
+          <h1>PlayerID: {game.id}</h1>
+          <h1>PlayerName: {game.player.name}</h1>
+          <button className="btn btn-secondary" onClick={changePlayer}>
+            Update Name
+          </button>
+        </div>
+      </>
+    );
 }
 
 export default App;
