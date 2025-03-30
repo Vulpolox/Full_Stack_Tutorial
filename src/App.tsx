@@ -7,12 +7,13 @@ import { Alert, DismissibleAlert } from "./components/Alert";
 import Button from "./components/Button";
 import { Like, BetterLike } from "./components/Like";
 import { Cart, NavBar } from "./components/SharedStateEx";
+import ExpandableText from "./components/ExpandableText";
 
 import { produce } from "immer";
 
 import { useState } from "react";
 
-var section = "2";
+var section = "3";
 
 function App() {
   // Section #1 Variables
@@ -92,6 +93,12 @@ function App() {
         </div>
       </>
     );
+  else if (section === "3")
+    return (
+  <>
+  <ExpandableText text="Hello World! My name is <REDACTED> and I like to write code in Typescript" maxChars={5}></ExpandableText>
+  </>
+  )
 }
 
 export default App;

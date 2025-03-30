@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 
-// to use styles, rename your css file to have a .module before the extension
+// to use styles/modules , rename your css file to have a .module before the extension
 // this allows you to treat the file as an object and its classes as its attributes
 // to style using the .list-group class from ListGroup.module.css, use className={styles['list-group']}
 // or if the class was named using camelCase, use dot notation: className={styles.cssClass}
