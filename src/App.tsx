@@ -8,12 +8,13 @@ import Button from "./components/Button";
 import { Like, BetterLike } from "./components/Like";
 import { Cart, NavBar } from "./components/SharedStateEx";
 import ExpandableText from "./components/ExpandableText";
+import { Form, ReactHookFormEX } from "./components/Form";
 
 import { produce } from "immer";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
-var section = "3";
+var section = "4";
 
 function App() {
   // Section #1 Variables
@@ -93,12 +94,36 @@ function App() {
         </div>
       </>
     );
+  // Section #3 Page
   else if (section === "3")
     return (
-  <>
-  <ExpandableText text="Hello World! My name is <REDACTED> and I like to write code in Typescript" maxChars={5}></ExpandableText>
-  </>
-  )
+      <>
+        <ExpandableText maxChars={5}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Necessitatibus, quos, reprehenderit, libero quas dolores rem modi
+          inventore maiores tenetur ipsum ipsa cum. At, magni sint tenetur
+          corrupti quisquam et quos ipsum. Similique neque veritatis quisquam
+          totam ullam sint, commodi obcaecati porro adipisci accusamus
+          inventore, distinctio consequatur fuga nemo, tenetur dicta ut nulla ad
+          expedita consectetur nobis dolor explicabo! Nihil, quis similique
+          numquam reprehenderit sequi eaque ea sunt itaque quisquam quod,
+          consectetur natus officiis sint nulla. Esse fugit omnis facere quos ad
+          deserunt distinctio minus, repellat accusamus quae error repellendus,
+          quam veniam rerum mollitia vel ipsa sit! Nisi voluptates dolore
+          dolores.
+        </ExpandableText>
+        <ExpandableText maxChars={100}>
+          Expandable Text Element w/ maxChars=100; Button Shouldn't Be Visible
+        </ExpandableText>
+      </>
+    );
+  else if (section === "4")
+    return (
+      <div>
+        <p>My Form</p>
+        <ReactHookFormEX></ReactHookFormEX>
+      </div>
+    );
 }
 
 export default App;
